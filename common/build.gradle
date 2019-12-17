@@ -32,6 +32,10 @@ android {
     dataBinding {
         enabled = true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -45,10 +49,5 @@ dependencies {
     api deps.lib.retrofit
     api deps.lib.arouter_api
 
-    //日志系统
-    api deps.lib.acra_http
-    api deps.lib.acra_dialog
-    api deps.lib.acra_limiter
-    api deps.lib.acra_scheduler
     api deps.lib.multidex
 }
