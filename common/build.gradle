@@ -43,4 +43,12 @@ dependencies {
     androidTestImplementation deps.androidx.test_espresso_core
     api deps.lib.gson
     api deps.lib.retrofit
+    api deps.lib.arouter_api
+
+    //日志系统
+    api deps.lib.acra_http
+    api deps.lib.acra_dialog
+    api deps.lib.acra_limiter
+    api deps.lib.acra_scheduler
+    api deps.lib.multidex
 }
