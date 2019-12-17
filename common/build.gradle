@@ -42,4 +42,5 @@ dependencies {
     testImplementation deps.androidx.junit
     androidTestImplementation deps.androidx.test_espresso_core
     api deps.lib.gson
+    api deps.lib.retrofit
 }

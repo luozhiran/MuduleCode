@@ -5,16 +5,41 @@ android {
     buildToolsVersion build_versions.build_tools
     defaultConfig {
         applicationId "com.itg.mudulecode"
-        minSdkVersion  build_versions.min_sdk
-        targetSdkVersion  build_versions.target_sdk
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
+    signingConfigs {
         release {
+            keyAlias 'itg'
+            keyPassword 'lawn1990'
+            storeFile file('/itg.jks')
+            storePassword 'lawn1990'
+        }
+    }
+
+    buildTypes {
+        debug {
+            //给applicationId添加后缀“.debug”
+            applicationIdSuffix ".debug"
             minifyEnabled false
+            buildConfigField("boolean", "LOG_DEBUG", "false")
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            zipAlignEnabled false
+            shrinkResources false
+            minifyEnabled false
+            debuggable true
+        }
+        release {
+            minifyEnabled true
+            buildConfigField("boolean", "LOG_DEBUG", "false")
+            zipAlignEnabled true
+            // 缩减resource文件
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
@@ -22,7 +47,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':common')
-    if (!isModule.toBoolean()){
-        implementation project (':module_main')
+    if (!isModule.toBoolean()) {
+        implementation project(':module_main')
+        implementation project(':module_1')
     }
 }
