@@ -16,12 +16,13 @@ import androidx.databinding.ViewDataBinding;
 
 public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatActivity {
 
-    private T mViewId;
+    protected T mViewId;
+
     /**
      * @hide
      */
     @Override
-     protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (BuildConfig.isDataBinding) {
             mViewId = DataBindingUtil.setContentView(this, getLayoutId());
@@ -29,9 +30,12 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatA
             setContentView(getLayoutId());
         }
         statusColor();
+        init();
     }
 
-    public void statusColor(){
+    public abstract void init();
+
+    public void statusColor() {
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.colorPrimary));
     }
 

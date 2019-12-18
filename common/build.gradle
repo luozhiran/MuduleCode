@@ -47,7 +47,7 @@ dependencies {
     androidTestImplementation deps.androidx.test_espresso_core
     api deps.lib.gson
     api deps.lib.retrofit
+    api deps.lib.retrofit_gson
     api deps.lib.arouter_api
-
     api deps.lib.multidex
 }

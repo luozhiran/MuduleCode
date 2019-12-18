@@ -19,6 +19,7 @@ versions.retrofit = "2.7.0"
 versions.arouter_api = "1.5.0"
 versions.acra = '5.4.0'
 versions.multidex = "1.0.2"
+versions.retrofit_converter_gson="2.5.0"
 
 //gradle默认生成配置
 def androidx = [:]
@@ -32,6 +33,7 @@ deps.androidx = androidx
 def lib = [:]
 lib.gson = "com.google.code.gson:gson:$versions.gson"
 lib.retrofit ="com.squareup.retrofit2:retrofit:$versions.retrofit"
+lib.retrofit_gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit_converter_gson"
 lib.arouter_api = "com.alibaba:arouter-api:$versions.arouter_api"
 lib.multidex = "com.android.support:multidex:$versions.multidex"
 
