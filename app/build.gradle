@@ -63,7 +63,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':common')
-    implementation project(':annotionlib')
 
     if (!isModule.toBoolean()) {
         implementation project(':module_main')

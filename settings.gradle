@@ -1,2 +1,2 @@
-include ':app', ':module_main', ':common', ':test_module', ':module_1', ':annotionlib'
+include ':app', ':module_main', ':common', ':test_module', ':module_1'
 rootProject.name='MuduleCode'
