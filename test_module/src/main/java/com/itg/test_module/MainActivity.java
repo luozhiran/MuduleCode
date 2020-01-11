@@ -1,36 +1,45 @@
 package com.itg.test_module;
 
-import android.view.View;
+import android.util.Log;
 
 import com.itg.common.base.BaseActivity;
-import com.itg.common.utils.StatusBarUtil;
 import com.itg.test_module.databinding.TestActivityMainBinding;
-import com.itg.test_module.retrofitApi.GitHub;
+import com.itg.test_module.retrofitApi.BaiduApi;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
-
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Converter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class MainActivity extends BaseActivity<TestActivityMainBinding> {
-    public static final String API_URL = "https://api.github.com";
 
     @Override
     public int getLayoutId() {
         return R.layout.test_activity_main;
     }
 
-
     @Override
     public void init() {
         mViewId.request.setOnClickListener(v -> {
-            Retrofit retrofit = createRetrofit();
-           String string = retrofit.create(String.class);
 
+            Retrofit retrofit = createRetrofit();
+
+            BaiduApi baiduApi = retrofit.create(BaiduApi.class);
+            Call<String> call = baiduApi.BaiduString();
+
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    Log.e("retrofit", response.body());
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    Log.e("retrofit",t.getMessage());
+                }
+            });
 
         });
     }
@@ -38,12 +47,10 @@ public class MainActivity extends BaseActivity<TestActivityMainBinding> {
     public Retrofit createRetrofit() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl("http://www.baidu.com/");
+        builder.addConverterFactory(ScalarsConverterFactory.create());
         builder.addConverterFactory(GsonConverterFactory.create());
         return builder.build();
     }
 
-    @Override
-    public void statusColor() {
-        StatusBarUtil.setStatusBarTransparent(this, getResources().getColor(R.color.white), 1);
-    }
+
 }
