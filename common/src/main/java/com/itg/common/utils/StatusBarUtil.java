@@ -28,6 +28,8 @@ public class StatusBarUtil {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             window.setStatusBarColor(colorId);
+//            ViewGroup viewGroup =window.getDecorView().findViewById(android.R.id.content);
+//            viewGroup.getChildAt(0).setFitsSystemWindows(true);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //支持4.4到5.0
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);//设置状态栏透明，并且系统view全屏

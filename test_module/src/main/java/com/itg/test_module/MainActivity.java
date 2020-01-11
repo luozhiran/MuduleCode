@@ -6,6 +6,7 @@ import com.itg.common.base.BaseActivity;
 import com.itg.test_module.databinding.TestActivityMainBinding;
 import com.itg.test_module.retrofitApi.BaiduApi;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,22 +25,24 @@ public class MainActivity extends BaseActivity<TestActivityMainBinding> {
     public void init() {
         mViewId.request.setOnClickListener(v -> {
 
-            Retrofit retrofit = createRetrofit();
+//            Retrofit retrofit = createRetrofit();
+//
+//            BaiduApi baiduApi = retrofit.create(BaiduApi.class);
+//            Call<String> call = baiduApi.BaiduString();
+//
+//            call.enqueue(new Callback<String>() {
+//                @Override
+//                public void onResponse(Call<String> call, Response<String> response) {
+//                    Log.e("retrofit", response.body());
+//                }
+//
+//                @Override
+//                public void onFailure(Call<String> call, Throwable t) {
+//                    Log.e("retrofit",t.getMessage());
+//                }
+//            });
 
-            BaiduApi baiduApi = retrofit.create(BaiduApi.class);
-            Call<String> call = baiduApi.BaiduString();
-
-            call.enqueue(new Callback<String>() {
-                @Override
-                public void onResponse(Call<String> call, Response<String> response) {
-                    Log.e("retrofit", response.body());
-                }
-
-                @Override
-                public void onFailure(Call<String> call, Throwable t) {
-                    Log.e("retrofit",t.getMessage());
-                }
-            });
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
         });
     }
